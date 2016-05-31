@@ -1,3 +1,4 @@
+var MARGIN = 5;
 var AMOUNT_TARGETS = 10;
 var start_time = undefined;
 var clicked_targets = 0;
@@ -11,9 +12,15 @@ function reset_state () {
 }
 
 function reposition_target () {
-    var new_random_top = Math.floor(Math.random() * 900);
-    var new_random_left = Math.floor(Math.random() * (1920 - 100));
-    $("#click_me").css({top: new_random_top, left: new_random_left});
+    var $window = $(window);
+    var $click_me = $("#click_me");
+    var target_height = $click_me.height();
+    var target_width = $click_me.width();
+    var new_random_top = Math.floor(Math.random() * ($window.height() - target_height - MARGIN));
+    var new_random_left = Math.floor(Math.random() * ($window.width() - target_width - MARGIN));
+    debugger;
+
+    $click_me.css({top: new_random_top, left: new_random_left});
 
     clicked_targets++;
 
